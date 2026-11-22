@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OWCS 2026 ワールドファイナル カウントダウン</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    background: #0b0e1a;
+    color: #f2f4f8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    text-align: center;
+  }
+  .tag {
+    color: #f99e1a;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(26px, 6vw, 44px);
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .sub { color: #aab3c5; font-size: 15px; margin-bottom: 36px; }
+  .countdown {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+  .unit {
+    background: #161b2e;
+    border: 1px solid #262e4a;
+    border-radius: 12px;
+    min-width: 76px;
+    padding: 14px 10px 10px;
+  }
+  .num { font-size: 34px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .label { font-size: 11px; color: #8b94a9; letter-spacing: 0.15em; margin-top: 2px; }
+  .card {
+    background: #12172a;
+    border: 1px solid #262e4a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    max-width: 520px;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+  .card b { color: #f99e1a; }
+  footer { margin-top: 28px; color: #5d6678; font-size: 12px; }
+</style>
+</head>
+<body>
+  <div class="tag">OVERWATCH CHAMPIONS SERIES</div>
+  <h1>OWCS 2026 ワールドファイナル<br>カウントダウン</h1>
+  <p class="sub">2026年12月2日（水）〜 6日（日）／ 中国・広州</p>
+
+  <div class="countdown" id="countdown">
+    <div class="unit"><div class="num" id="d">--</div><div class="label">DAYS</div></div>
+    <div class="unit"><div class="num" id="h">--</div><div class="label">HOURS</div></div>
+    <div class="unit"><div class="num" id="m">--</div><div class="label">MIN</div></div>
+    <div class="unit"><div class="num" id="s">--</div><div class="label">SEC</div></div>
+  </div>
+
+  <div class="card">
+    <p>📍 <b>会場</b>：広州体育館（12月4日〜6日）</p>
+    <p>🏆 <b>決勝</b>：12月6日（日）</p>
+    <p>📺 <b>配信開始</b>：日本時間 12:30〜（Twitch / YouTube）</p>
+    <p>🇯🇵 <b>日本代表</b>：VARREL がアジア決勝を勝ち抜き出場決定</p>
+    <p>👥 <b>出場</b>：全12チーム、ダブルエリミネーション</p>
+  </div>
+
+  <footer>OWCS 2026 World Finals — Guangzhou</footer>
+
+<script>
+  const target = new Date("2026-12-02T12:30:00+09:00").getTime();
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      document.getElementById("d").textContent = "0";
+      document.getElementById("h").textContent = "0";
+      document.getElementById("m").textContent = "0";
+      document.getElementById("s").textContent = "0";
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff % 86400000 / 3600000);
+    const m = Math.floor(diff % 3600000 / 60000);
+    const s = Math.floor(diff % 60000 / 1000);
+    document.getElementById("d").textContent = d;
+    document.getElementById("h").textContent = String(h).padStart(2, "0");
+    document.getElementById("m").textContent = String(m).padStart(2, "0");
+    document.getElementById("s").textContent = String(s).padStart(2, "0");
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
